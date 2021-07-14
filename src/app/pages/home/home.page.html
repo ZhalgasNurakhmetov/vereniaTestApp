@@ -1,0 +1,28 @@
+<div class="form-group mb-3">
+  <input type="text" class="form-control" placeholder="Поиск" [formControl]="searchText">
+</div>
+<language-list
+  *ngIf="fullProjectList"
+  [languageList]="languageList"
+  (onFilterProjectList)="filterProjectList($event)"
+  (onShowFullProjectList)="showFullProjectList($event)"
+>
+</language-list>
+
+<project-list-table
+  *ngIf="fullProjectList && isShowFullProjectList; else filteredList"
+  [projectList]="fullProjectList"
+  [isHome]="true"
+  (onAddToFavorites)="addToFavorites($event)"
+>
+</project-list-table>
+
+<ng-template #filteredList>
+  <project-list-table
+    *ngIf="filteredProjectList"
+    [projectList]="filteredProjectList"
+    [isHome]="true"
+    (onAddToFavorites)="addToFavorites($event)"
+  >
+  </project-list-table>
+</ng-template>

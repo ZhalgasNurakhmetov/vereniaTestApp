@@ -1,0 +1,9 @@
+<div class="dropdown mb-3">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Фильтр по языку
+  </button>
+  <div class="dropdown-menu">
+    <p class="dropdown-item" (click)="onShowFullProjectList.emit(true)">Все</p>
+    <p class="dropdown-item" *ngFor="let language of languageList" (click)="onFilterProjectList.emit(language)">{{language}}</p>
+  </div>
+</div>

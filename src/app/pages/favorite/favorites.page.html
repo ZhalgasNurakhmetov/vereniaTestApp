@@ -1,0 +1,25 @@
+<language-list
+  *ngIf="fullProjectList?.length"
+  [languageList]="languageList"
+  (onFilterProjectList)="filterProjectList($event)"
+  (onShowFullProjectList)="showFullProjectList($event)"
+>
+</language-list>
+
+<project-list-table
+  *ngIf="fullProjectList?.length && isShowFullProjectList; else filteredList"
+  [projectList]="fullProjectList"
+  [isHome]="false"
+  (onDeleteFromFavorites)="removeFromFavorites($event)"
+>
+</project-list-table>
+
+<ng-template #filteredList>
+  <project-list-table
+    *ngIf="filteredProjectList?.length"
+    [projectList]="filteredProjectList"
+    [isHome]="false"
+    (onDeleteFromFavorites)="removeFromFavorites($event)"
+  >
+  </project-list-table>
+</ng-template>

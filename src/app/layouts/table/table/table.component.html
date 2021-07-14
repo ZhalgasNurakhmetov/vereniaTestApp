@@ -1,0 +1,50 @@
+<table class="table table-bordered table-hover table-responsive-sm">
+  <thead class="thead-dark">
+  <tr>
+    <th>
+      Фото
+    </th>
+    <th>
+      Имя проекта
+    </th>
+    <th>
+      Рейтинг
+    </th>
+    <th>
+      Описание
+    </th>
+    <th>
+      Ссылка
+    </th>
+    <th>
+      Язык
+    </th>
+    <th>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let project of projectList">
+    <td>
+      <img [src]="project?.owner?.avatar_url" class="rounded-circle" width="50" height="50">
+    </td>
+    <td>{{project?.name}}</td>
+    <td>{{project?.score}}</td>
+    <td>{{project?.description}}</td>
+    <td>
+      <a [href]="project?.html_url" target="_blank">Перейти</a>
+    </td>
+    <td>{{project?.language}}</td>
+    <td>
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline-success" (click)="onAddToFavorites.emit(project)" data-toggle="tooltip" title="Добавить" *ngIf="isHome">Добавить в избранные</button>
+        <button type="button" class="btn btn-outline-danger" (click)="onDeleteFromFavorites.emit(project)" data-toggle="tooltip" title="Удалить" *ngIf="!isHome">Удалить из избранных</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #deleteButton>
+
+</ng-template>
